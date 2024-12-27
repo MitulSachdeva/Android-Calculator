@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calculator {
+            background-color: #000;
+            width: 320px;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #result {
+            width: 95%;
+            height: 60px;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            font-size: 2em;
+            text-align: right;
+            padding: 10px;
+            border-bottom: 1px solid #444;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            width: 100%;
+        }
+
+        .button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.5em;
+            padding: 15px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #444;
+        }
+
+        .orange {
+            background-color: #f59000;
+            color: #fff;
+        }
+
+        .orange:hover {
+            background-color: #e58000;
+        }
+
+        .equals {
+            background-color: #f59000;
+            color: #fff;
+            grid-column: span 1;
+        }
+
+        .equals:hover {
+            background-color: #e58000;
+        }
+
+        .button.root {
+            background-color: #808080;
+            color: #fff;
+        }
+
+        .button.root:hover {
+            background-color: #6e6e6e;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="result" disabled>
+        <div class="buttons">
+            <button class="button orange" onclick="clearResult()">AC</button>
+            <button class="button orange" onclick="handleBackspace()">⌫</button>
+            <button class="button orange" onclick="appendToResult('%')">%</button>
+            <button class="button orange" onclick="appendToResult('/')">÷</button>
+
+            <button class="button" onclick="appendToResult('7')">7</button>
+            <button class="button" onclick="appendToResult('8')">8</button>
+            <button class="button" onclick="appendToResult('9')">9</button>
+            <button class="button orange" onclick="appendToResult('*')">×</button>
+
+            <button class="button" onclick="appendToResult('4')">4</button>
+            <button class="button" onclick="appendToResult('5')">5</button>
+            <button class="button" onclick="appendToResult('6')">6</button>
+            <button class="button orange" onclick="appendToResult('-')">−</button>
+
+            <button class="button" onclick="appendToResult('1')">1</button>
+            <button class="button" onclick="appendToResult('2')">2</button>
+            <button class="button" onclick="appendToResult('3')">3</button>
+            <button class="button orange" onclick="appendToResult('+')">+</button>
+
+            <button class="button root" onclick="appendToResult('√')">√</button>
+            <button class="button" onclick="appendToResult('0')">0</button>
+            <button class="button" onclick="appendToResult('.')">.</button>
+            <button class="button equals" onclick="calculateResult()">=</button>
+        </div>
+    </div>
+    <script>
+        function clearResult() {
+            document.getElementById('result').value = '';
+        }
+
+        function appendToResult(value) {
+            const result = document.getElementById('result');
+            result.value += value;
+        }
+
+        function handleBackspace() {
+            const result = document.getElementById('result');
+            result.value = result.value.slice(0, -1);
+        }
+
+        function calculateResult() {
+            const result = document.getElementById('result');
+            let expression = result.value;
+
+            try {
+                expression = expression.replace(/(\d+)%(\d+)/g, '($1*$2)/100');
+                expression = expression.replace(/√(\d+(\.\d+)?)/g, (_, number) => Math.sqrt(parseFloat(number)));
+                result.value = eval(expression);
+            } catch {
+                result.value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
