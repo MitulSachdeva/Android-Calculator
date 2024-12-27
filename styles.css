@@ -1,0 +1,72 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff; /* Set the background to white */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.calculator {
+    background-color: #000; /* Keep the calculator's background black */
+    width: 320px;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+#result {
+    width: 100%;
+    height: 60px;
+    background-color: #fff; /* Change display screen background to white */
+    color: #000; /* Change text color to black for better contrast */
+    border: none;
+    font-size: 2em;
+    text-align: right;
+    padding: 10px;
+    border-bottom: 1px solid #444;
+    margin-bottom: 20px;
+    margin-left: 10px; /* Add margin-left to shift the screen to the left */
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.5em;
+    padding: 15px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: black;
+}
+
+.orange {
+    background-color: #f59000;
+    color: #fff;
+}
+
+.orange:hover {
+    background-color: #e58000;
+}
+
+.equals {
+    background-color: #f59000;
+    color: #fff;
+    grid-column: span 1;
+}
+
+.equals:hover {
+    background-color: #e58000;
+}
