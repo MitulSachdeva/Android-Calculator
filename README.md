@@ -10,4 +10,4 @@ A simple and interactive calculator built using HTML, CSS, and JavaScript. It su
 - AC Button: Clears the current input.
 
 ## Live Demo
-[Live Demo of Calculator](ttps://MitulSachdeva.github.io/Simple-Calculator/)
+[Live Demo of Calculator](https://MitulSachdeva.github.io/Simple-Calculator/)
